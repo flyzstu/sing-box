@@ -225,8 +225,8 @@ func (s *Server) session(id string) *serverSession {
 
 func (s *Server) closeSession(id string, session *serverSession) {
 	session.markConnected()
-	s.sessions.CompareAndDelete(id, session)
 	session.close()
+	s.sessions.CompareAndDelete(id, session)
 }
 
 func (s *Server) writeCORS(writer http.ResponseWriter, request *http.Request) {
